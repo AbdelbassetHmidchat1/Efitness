@@ -2,18 +2,12 @@ import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/User";
 import { errorHandler, validateAllOnce } from "../../../utils/common";
 import bcrypt from "bcrypt";
-import Cors from 'cors';
-
-// Initializing the cors middleware
-const cors = Cors({
-  methods: ['GET', 'HEAD', 'POST', 'OPTIONS']
-});
+import Cors from 'nextjs-cors';
 
 dbConnect();
 
 export default async function handler(req, res) {
-  // Run the middleware
-  await cors(req, res);
+  await Cors(req, res);
 
   if (req.method === "GET") {
     try {
