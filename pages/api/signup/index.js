@@ -2,14 +2,19 @@ import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/User";
 import { errorHandler, validateAllOnce } from "../../../utils/common";
 import bcrypt from "bcrypt";
+import Cors from 'cors';
+
+// Initializing the cors middleware
+const cors = Cors({
+  methods: ['GET', 'HEAD', 'POST', 'OPTIONS']
+});
 
 dbConnect();
 
-
-
-
-
 export default async function handler(req, res) {
+  // Run the middleware
+  await cors(req, res);
+
   if (req.method === "GET") {
     try {
       const users = await User.find({});
@@ -20,27 +25,22 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     try {
       const { name, email, password } = req.body;
-      validateAllOnce(req.body)
+      validateAllOnce(req.body);
       const hashPassword = await bcrypt.hash(password, 8);
       const user = new User({
         ...req.body,
-        password:hashPassword
-  
+        password: hashPassword,
       });
-      const saveUser = await user.save()
-      if(saveUser){
-        const userDoc=saveUser._doc;
+      const saveUser = await user.save();
+      if (saveUser) {
+        const userDoc = saveUser._doc;
         delete userDoc.password;
-        return res.status(201).json({ message: "let's goo",userDoc });
-        
-        
-      }else{
-        errorHandler("something went wrong",res)
-      }      
+        return res.status(201).json({ message: "let's goo", userDoc });
+      } else {
+        errorHandler("something went wrong", res);
+      }
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
-
-}
+  }
 }
