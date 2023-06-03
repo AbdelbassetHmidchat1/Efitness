@@ -13,6 +13,7 @@ export default function Navbar() {
   let Links = [
     { name: "Home", link: "/" },
     { name: "Features", link: "/#features" },
+    { name: "Sign up", link: "/sign-up" },
     { name: "Sign in", link: "/sign-in" },
   ];
   let [open,setOpen]=useState(false)
@@ -28,13 +29,13 @@ export default function Navbar() {
 
   return (
       <nav className=" shadow-md w-full fixed top-0 left-0 z-50">
-                        <div className="absolute top-10 right-10">
+                        {/* <div className="absolute top-10 right-10">
                         {status ? (
                         <span onClick={()=>handleStatus()}><AiOutlineClose className="w-12 h-12 text-white lg:invisible visible hover:rotate-90 transition-all duration-700 "/></span>
                         ) : (
                         <span onClick={()=>handleStatus()}><AiOutlineMenu className="w-12 h-12 text-white lg:invisible visible hover:rotate-90 transition-all duration-700"/></span>
                         )}
-                    </div>
+                    </div> */}
         <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
           <div className="cursor-pointer flex items-center">
             <h1 className="m-0 font-['Alex_Brush']">Efitness</h1>

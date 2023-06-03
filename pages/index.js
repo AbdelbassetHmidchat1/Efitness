@@ -44,6 +44,7 @@ export default function Home() {
       </div>
 
     </article>
+    <article className="mt-[150vh] md:m-0" >
     <article className="h-screen w-full bg-white  text-center py-36 md:grid md:grid-cols-2 md:grid-rows-[1fr,2fr] md:place-items-center ">
       <h1 className="text-center col-span-2">Calorie counter</h1>
       <div className="flex justify-center  ">
@@ -81,6 +82,9 @@ export default function Home() {
     </article>
 
 
+
+    </article>
+   
     </main>
 
 
